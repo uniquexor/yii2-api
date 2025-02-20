@@ -1,0 +1,29 @@
+{
+    "name": "unique/yii2-api",
+    "description": "Easier use of vue3 in Yii2 framework.",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Algirdas Gurevičius",
+            "email": "a.gurevicius@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "unique\\yii2api\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
