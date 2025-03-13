@@ -5,6 +5,7 @@
     use unique\yii2api\modules\api\actions\IndexAction;
     use unique\yii2api\modules\api\actions\UpdateAction;
     use yii\data\ActiveDataFilter;
+    use yii\helpers\ArrayHelper;
     use yii\rest\DeleteAction;
     use yii\rest\ViewAction;
 
@@ -61,7 +62,7 @@
                 $actions['index']['dataFilter'] = [ 'class' => ActiveDataFilter::class, 'searchModel' => $model ];
             }
 
-            $actions = array_merge_recursive( $actions, $this->action_options );
+            $actions = ArrayHelper::merge( $actions, $this->action_options );
 
             return array_filter( $actions, function ( $action ) {
 
