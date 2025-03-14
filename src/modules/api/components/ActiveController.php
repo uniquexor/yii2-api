@@ -69,4 +69,25 @@
                 return !$this->hasMethod( 'action' . ucfirst( $action ) );
             }, ARRAY_FILTER_USE_KEY );
         }
+
+        /**
+         * Checks if request contains `_expand` GET parameter and if so, returns it as an array.
+         * Makes it easier to serialize model data in an action, by calling:
+         * ```
+         * return $model->toArray( [], $this->getExpandFromRequest() );
+         * ```
+         *
+         * @return array
+         */
+        protected function getExpandFromRequest(): array {
+
+            $expand = \Yii::$app->request->get( '_expand', [] );
+            if ( is_string( $expand ) ) {
+
+                $expand = explode( ',', $expand );
+                $expand = array_map( 'trim', $expand );
+            }
+
+            return $expand;
+        }
     }
