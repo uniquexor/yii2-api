@@ -10,7 +10,16 @@
 
             if ( $id === null ) {
 
-                $id = \Yii::$app->request->getBodyParam( 'id' );
+                $modelClass = $this->modelClass;
+                $keys = $modelClass::primaryKey();
+                
+                $id = [];
+                foreach ( $keys as $key ) {
+
+                    $id[] = \Yii::$app->request->getBodyParam( $key );
+                }
+
+                $id = implode( ',', $id );
             }
 
             /* @var $model ActiveRecord */
