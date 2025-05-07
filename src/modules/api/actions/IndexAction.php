@@ -3,6 +3,7 @@
 
     use unique\yii2api\modules\api\interfaces\SearchQueryInterface;
     use yii\data\ActiveDataProvider;
+    use yii\data\BaseDataProvider;
     use yii\db\ActiveQuery;
     use yii\db\BaseActiveRecord;
 
@@ -102,6 +103,10 @@
                 if ( $this->provider_options_callback ) {
 
                     $options = call_user_func( $this->provider_options_callback, $options );
+                    if ( $options instanceof BaseDataProvider ) {
+
+                        return $options;
+                    }
                 }
 
                 return \Yii::createObject( $options );
