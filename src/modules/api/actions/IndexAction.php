@@ -1,6 +1,7 @@
 <?php
     namespace unique\yii2api\modules\api\actions;
 
+    use unique\yii2api\modules\api\interfaces\ModelWithDecoratorsInterface;
     use unique\yii2api\modules\api\interfaces\SearchQueryInterface;
     use yii\data\ActiveDataProvider;
     use yii\data\BaseDataProvider;
@@ -109,7 +110,13 @@
                     }
                 }
 
-                return \Yii::createObject( $options );
+                $provider = \Yii::createObject( $options );
+                if ( $model instanceof ModelWithDecoratorsInterface ) {
+
+                    $model->decorateModels( $provider->getModels() );
+                }
+
+                return $provider;
             };
         }
     }

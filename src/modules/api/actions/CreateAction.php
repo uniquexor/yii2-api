@@ -1,6 +1,7 @@
 <?php
     namespace unique\yii2api\modules\api\actions;
 
+    use unique\yii2api\modules\api\interfaces\ModelWithDecoratorsInterface;
     use Yii;
 
     class CreateAction extends \yii\rest\CreateAction {
@@ -24,6 +25,11 @@
 
                     $expand = explode( ',', $expand );
                     $expand = array_map( 'trim', $expand );
+                }
+
+                if ( $model instanceof ModelWithDecoratorsInterface ) {
+
+                    $model->decorateModels( [ $model ] );
                 }
 
                 return $model->toArray( [], $expand );
