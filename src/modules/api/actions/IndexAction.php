@@ -44,11 +44,13 @@
 
                 /**
                  * @var \yii\db\BaseActiveRecord $modelClass
-                 * @var BaseActiveRecord $model
+                 * @var BaseActiveRecord|ModelWithDecoratorsInterface|null $model
                  */
 
                 $query = null;
                 $modelClass = $this->modelClass;
+                $model = null;
+
                 if ( $this->dataFilter && $this->dataFilter->searchModel ) {
 
                     $model = new $this->dataFilter->searchModel( [ 'scenario' => 'search' ] );
