@@ -10,6 +10,8 @@
 
         public string $rest_config_path = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.php';
 
+        public string $name = 'api';
+
         public function init() {
 
             parent::init();
@@ -57,7 +59,7 @@
                     }
 
                     $short_controller_name = Inflector::camel2id( substr( $controller, 0, -1 * strlen( 'Controller' ) ) );
-                    $controllers[ $short_controller_name ] = 'api/' . $short_controller_name;
+                    $controllers[ $short_controller_name ] = $this->name . '/' . $short_controller_name;
                 }
             }
 
